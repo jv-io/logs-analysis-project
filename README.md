@@ -1,4 +1,4 @@
-#Jasper's News Log Analysis Project
+Jasper's News Log Analysis Project
 ===================================
 
 **Introduction**
@@ -17,7 +17,7 @@ It runs on Python 2.7.12 and uses the psycopg2 and bleach libraries.
 
 ---
 
-_Views created in database_
+**Views created in database**
 
 - slugpath: shows table with slugs and their counts that match articles.slug
 ```psql
