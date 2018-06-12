@@ -2,6 +2,7 @@ Jasper's News Log Analysis Project
 ===================================
 
 **Introduction**
+
 This program uses the standard udacity-database for the 'Logs Analysis Project'
 that is part of the 'Intro to Programming Nanodegree'. It answers the three
 questions automatically by running the code in the command line interface.
