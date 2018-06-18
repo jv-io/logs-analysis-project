@@ -7,6 +7,7 @@ import psycopg2
 # Imports  from_db_cursor so we can create a table from sql
 from prettytable import from_db_cursor
 
+
 # Defines the database name
 DBNAME = "news"
 
@@ -22,28 +23,36 @@ query = ["select * from popnews",
          "select * from errorcheck"]
 
 
+def connect(database_name):
+    """Connect to the PostgreSQL database. Returns a database connection."""
+    try:
+        db = psycopg2.connect("dbname={}".format(database_name))
+        c = db.cursor()
+        return db, c
+    except psycopg2.Error as e:
+        print "Unable to connect to database"
+
+
 def execute_query(query_string):
-    """Connects with the database, executes the query and prints out the table.
+    """Runs connect with DBNAME, executes the query and prints out the table.
     Input:
-        query_string(str)
-        DBNAME(str)
-    Behavior:
-        Connects with the database.
-        Creates a database cursor.
+		query_string(str)
+		DBNAME(str)
+	Behavior:
+		Connects with the database.
+		Creates a database cursor.
         Executes the database query.
-        Creates a prettytable from database results.
+		Creates a prettytable from database result
         Prints the prettytable.
         Closes the database.
-    Return:
-        none
+	Return:
+		none
     """
-    db = psycopg2.connect(dbname=DBNAME)
-    c = db.cursor()
+    db, c = connect(DBNAME)
     c.execute(query_string)
     x = from_db_cursor(c)
     print (x)
     db.close()
-    return
 
 
 def search_db():
@@ -74,4 +83,5 @@ def search_db():
 
 
 # Runs all the queries through the database
-print search_db()
+if __name__ == '__main__':
+    print search_db()
